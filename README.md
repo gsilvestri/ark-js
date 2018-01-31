@@ -9,20 +9,20 @@ KAPU JS is a JavaScript library for sending KAPU transactions. It's main benefit
 
 ## Installation
 
-[![npm package](https://nodei.co/npm/arkjs.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/arkjs/)
+[![npm package](https://nodei.co/npm/kapujs.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/kapujs/)
 
 ## Building
 
 Build the browserify module for client use:
 
 ```sh
-npm build:browserify
+npm run build:browserify
 ```
 
 Clean:
 
 ```sh
-npm clean:browserify
+npm run clean:browserify
 ```
 
 ## Tests
@@ -83,13 +83,13 @@ Returning:
 To generate a unique KAPU address from a given public key:
 
 ```js
-var address = kapu.crypto.getAddress("5d036a858ce89f844491762eb89e2bfbd50a4a0a0da658e4b2628b25b117ae09");
+var address = kapu.crypto.getAddress("02e012f0a7cac12a74bdc17d844cbc9f637177b470019c32a53cef94c7a56e2ea9");
 ```
 
 Returning:
 
 ```
-AGihocTkwDygiFvmg6aG8jThYTic47GzU9
+KFE8YyadtYHnjPVdHNq3xVsQYCgWsKrKU6
 ```
 
 ### Creating a transaction
@@ -98,7 +98,7 @@ To create a signed transaction object, which can then be broadcasted onto the ne
 
 ```js
 var amount      = 1000 * Math.pow(10, 8); // 100000000000
-var transaction = kapu.transaction.createTransaction("AGihocTkwDygiFvmg6aG8jThYTic47GzU9", amount, null, "passphrase", "secondPassphrase");
+var transaction = kapu.transaction.createTransaction("KFE8YyadtYHnjPVdHNq3xVsQYCgWsKrKU6", amount, null, "passphrase", "secondPassphrase");
 ```
 
 Returning:
@@ -110,7 +110,7 @@ Returning:
   asset: {}, // Transaction asset, dependent on tx type.
   fee: 100000000, // 0.1 KAPU expressed as an integer value.
   id: "500224999259823996", // Transaction ID.
-  recipientId: "AGihocTkwDygiFvmg6aG8jThYTic47GzU9", // Recipient ID.
+  recipientId: "KFE8YyadtYHnjPVdHNq3xVsQYCgWsKrKU6", // Recipient ID.
   senderPublicKey: "56e106a1d4a53dbe22cac52fefd8fc4123cfb4ee482f8f25a4fc72eb459b38a5", // Sender's public key.
   signSignature: "03fdd33bed30270b97e77ada44764cc8628f6ad3bbd84718571695262a5a18baa37bd76a62dd25bc21beacd61eaf2c63af0cf34edb0d191d225f4974cd3aa509", // Sender's second passphrase signature.
   signature: "9419ca3cf11ed2e3fa4c63bc9a4dc18b5001648e74522bc0f22bda46a188e462da4785e5c71a43cfc0486af08d447b9340ba8b93258c4c7f50798060fff2d709", // Transaction signature.
@@ -123,7 +123,7 @@ Returning:
 You need to obtain the nethash in order to be sure you are broadcasting to the right network (testnet, mainnet or others). The nethash is simply the payload hash from the genesisBlock. If no nethash or wrong nethash is provided in the headers, the request will be rejected returning the expected nethash.
 
 ```json
-{ "success": false, "message": "Request is made on the wrong network", "expected":"e2f8f69ec6ab4b12550a314bd867c46e64e429961bb427514a3a534c602ff467", "received":"wrong-nethash" }
+{ "success": false, "message": "Request is made on the wrong network", "expected":"313ea34c8eb705f79e7bc298b788417ff3f7116c9596f5c9875e769ee2f4ede1", "received":"wrong-nethash" }
 ```
 
 The nethash for a given network can be obtained at the following API endpoint:
@@ -139,7 +139,7 @@ On the client using [jQuery](https://jquery.com/):
 ```js
 var nethash;
 $.ajax({
-  url: "https://api.kapunode.net/peer/transactions/",
+  url: "https://walletapi.kapu.one/peer/transactions/",
   data: JSON.stringify({}),
   dataType: "json",
   method: "POST",
@@ -161,7 +161,7 @@ From a server using [Request](https://github.com/request/request):
 ```js
 var nethash;
 request({
-  url: "https://api.kapunode.net/peer/transactions",
+  url: "https://walletapi.kapu.one/peer/transactions",
   json: { },
   method: "POST",
   headers: {
@@ -203,7 +203,7 @@ var success = function(data) {
 };
 
 $.ajax({
-  url: "https://api.kapunode.net/peer/transactions",
+  url: "https://walletapi.kapu.one/peer/transactions",
   data: JSON.stringify({ transactions: [transaction] }),
   dataType: "json",
   method: "POST",
@@ -231,7 +231,7 @@ var callback = function(error, response, body) {
 };
 
 request({
-  url: "https://api.kapunode.net/peer/transactions",
+  url: "https://walletapi.kapu.one/peer/transactions",
   json: { transactions: [transaction] },
   method: "POST",
   headers: {
