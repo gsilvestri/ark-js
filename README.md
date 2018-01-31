@@ -1,11 +1,11 @@
-![ARK JavaScript](https://i.imgur.com/ywwE2uF.png)
+![KAPU JavaScript](https://i.imgur.com/ywwE2uF.png)
 
 
 [![Build Status](https://travis-ci.org/ArkEcosystem/ark-js.svg?branch=master)](https://travis-ci.org/ArkEcosystem/ark-js)
 
-# Ark JS
+# KAPU JS
 
-Ark JS is a JavaScript library for sending ARK transactions. It's main benefit is that it does not require a locally installed ARK node, and instead utilizes the existing peers on the network. It can be used from the client as a [browserify](http://browserify.org/) compiled module, or on the server as a standard Node.js module.
+KAPU JS is a JavaScript library for sending KAPU transactions. It's main benefit is that it does not require a locally installed KAPU node, and instead utilizes the existing peers on the network. It can be used from the client as a [browserify](http://browserify.org/) compiled module, or on the server as a standard Node.js module.
 
 ## Installation
 
@@ -40,13 +40,13 @@ Tests written using mocha + schedule.js.
 On the client:
 
 ```html
-<script src="node_modules/arkjs/bundle.min.js"></script>
+<script src="node_modules/kapujs/bundle.min.js"></script>
 ```
 
 On the server:
 
 ```js
-var ark = require("arkjs");
+var kapu = require("kapujs");
 ```
 
 ### Generating a key pair
@@ -54,7 +54,7 @@ var ark = require("arkjs");
 To generate a public / private key pair from a given passphrase:
 
 ```js
-var keys = ark.crypto.getKeys("passphrase");
+var keys = kapu.crypto.getKeys("passphrase");
 ```
 
 Returning:
@@ -80,10 +80,10 @@ Returning:
 
 ### Generating an address
 
-To generate a unique Ark address from a given public key:
+To generate a unique KAPU address from a given public key:
 
 ```js
-var address = ark.crypto.getAddress("5d036a858ce89f844491762eb89e2bfbd50a4a0a0da658e4b2628b25b117ae09");
+var address = kapu.crypto.getAddress("5d036a858ce89f844491762eb89e2bfbd50a4a0a0da658e4b2628b25b117ae09");
 ```
 
 Returning:
@@ -98,7 +98,7 @@ To create a signed transaction object, which can then be broadcasted onto the ne
 
 ```js
 var amount      = 1000 * Math.pow(10, 8); // 100000000000
-var transaction = ark.transaction.createTransaction("AGihocTkwDygiFvmg6aG8jThYTic47GzU9", amount, null, "passphrase", "secondPassphrase");
+var transaction = kapu.transaction.createTransaction("AGihocTkwDygiFvmg6aG8jThYTic47GzU9", amount, null, "passphrase", "secondPassphrase");
 ```
 
 Returning:
@@ -108,7 +108,7 @@ Returning:
   type: 0, // Transaction type. 0 = Normal transaction.
   amount: 100000000000, // The amount to send expressed as an integer value.
   asset: {}, // Transaction asset, dependent on tx type.
-  fee: 100000000, // 0.1 ARK expressed as an integer value.
+  fee: 100000000, // 0.1 KAPU expressed as an integer value.
   id: "500224999259823996", // Transaction ID.
   recipientId: "AGihocTkwDygiFvmg6aG8jThYTic47GzU9", // Recipient ID.
   senderPublicKey: "56e106a1d4a53dbe22cac52fefd8fc4123cfb4ee482f8f25a4fc72eb459b38a5", // Sender's public key.
@@ -139,7 +139,7 @@ On the client using [jQuery](https://jquery.com/):
 ```js
 var nethash;
 $.ajax({
-  url: "https://api.arknode.net/peer/transactions/",
+  url: "https://api.kapunode.net/peer/transactions/",
   data: JSON.stringify({}),
   dataType: "json",
   method: "POST",
@@ -161,7 +161,7 @@ From a server using [Request](https://github.com/request/request):
 ```js
 var nethash;
 request({
-  url: "https://api.arknode.net/peer/transactions",
+  url: "https://api.kapunode.net/peer/transactions",
   json: { },
   method: "POST",
   headers: {
@@ -203,7 +203,7 @@ var success = function(data) {
 };
 
 $.ajax({
-  url: "https://api.arknode.net/peer/transactions",
+  url: "https://api.kapunode.net/peer/transactions",
   data: JSON.stringify({ transactions: [transaction] }),
   dataType: "json",
   method: "POST",
@@ -231,7 +231,7 @@ var callback = function(error, response, body) {
 };
 
 request({
-  url: "https://api.arknode.net/peer/transactions",
+  url: "https://api.kapunode.net/peer/transactions",
   json: { transactions: [transaction] },
   method: "POST",
   headers: {
@@ -265,19 +265,19 @@ If the transaction is deemed invalid, or an error is encountered, the receiving 
 #### Creating a delegate transaction
 
 ```js
-var transaction = ark.delegate.createDelegate("secret", "username", "secondSecret");
+var transaction = kapu.delegate.createDelegate("secret", "username", "secondSecret");
 ```
 
 #### Creating a second signature transaction
 
 ```js
-var transaction = ark.signature.createTransaction("secret", "secondSecret");
+var transaction = kapu.signature.createTransaction("secret", "secondSecret");
 ```
 
 #### Creating a vote transaction
 
 ```js
-var transaction = ark.vote.createVote("secret", ["+58199578191950019299181920120128129"], "secondSecret");
+var transaction = kapu.vote.createVote("secret", ["+58199578191950019299181920120128129"], "secondSecret");
 ```
 
 ***
@@ -287,14 +287,15 @@ var transaction = ark.vote.createVote("secret", ["+58199578191950019299181920120
 - Guillaume Verbal <doweig@ark.io>
 - Boris Povod <boris@crypti.me>
 - Oliver Beddows <oliver@lisk.io>
+- Giovanni Silvestri <gsit80@gmail.com>
 
 ## License
 
 The MIT License (MIT)
 
+Copyright (c) 2017-2018 KAPU.one<br />
 Copyright (c) 2016-2017 ARK.io<br />
-Copyright (c) 2016 Lisk<br />
-Copyright (c) 2015 Crypti
+Copyright (c) 2016 Lisk
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 

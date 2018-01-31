@@ -1,10 +1,10 @@
 var Buffer = require("buffer/").Buffer;
 var should = require("should");
-var ark = require("../../index.js");
+var kapu = require("../../index.js");
 
 describe("multisignature.js", function () {
 
-  var multisignature = ark.multisignature;
+  var multisignature = kapu.multisignature;
 
   it("should be ok", function () {
     (multisignature).should.be.ok;
@@ -33,10 +33,10 @@ describe("multisignature.js", function () {
     });
 
     it("should create multisignature transaction from keys", function () {
-      var secretKey = ark.ECPair.fromSeed("secret");
+      var secretKey = kapu.ECPair.fromSeed("secret");
       secretKey.publicKey = secretKey.getPublicKeyBuffer().toString("hex");
 
-      var secondSecretKey = ark.ECPair.fromSeed("second secret");
+      var secondSecretKey = kapu.ECPair.fromSeed("second secret");
       secondSecretKey.publicKey = secondSecretKey.getPublicKeyBuffer().toString("hex");
 
       sgn = createMultisignature(secretKey, secondSecretKey,["03a02b9d5fdd1307c2ee4652ba54d492d1fd11a7d1bb3f3a44c4a05e79f19de933","13a02b9d5fdd1307c2ee4652ba54d492d1fd11a7d1bb3f3a44c4a05e79f19de933","23a02b9d5fdd1307c2ee4652ba54d492d1fd11a7d1bb3f3a44c4a05e79f19de933"], 255, 2);
@@ -45,7 +45,7 @@ describe("multisignature.js", function () {
     });
 
     it("should be deserialised correctly", function () {
-      var deserialisedTx = ark.crypto.fromBytes(ark.crypto.getBytes(sgn).toString("hex"));
+      var deserialisedTx = kapu.crypto.fromBytes(kapu.crypto.getBytes(sgn).toString("hex"));
       delete deserialisedTx.vendorFieldHex;
       var keys = Object.keys(deserialisedTx)
       for(key in keys){

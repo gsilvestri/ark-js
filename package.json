@@ -1,7 +1,7 @@
 {
-  "name": "arkjs",
+  "name": "kapujs",
   "version": "0.2.1",
-  "description": "JavaScript library for sending Ark transactions from the client or server",
+  "description": "JavaScript library for sending kapu transactions from the client or server",
   "main": "index.js",
   "engines": {
     "node": ">=4"
@@ -12,7 +12,19 @@
     "build:docs": "jsdoc -c jsdoc.json",
     "clean:docs": "shx rm -r ./docs",
     "lint": "eslint .",
-    "test": "mocha test/ark.js test/*/*"
+    "test": "mocha test/kapu.js test/*/*",
+    "test:crypto": "mocha test/kapu.js test/crypto/*",
+    "test:ecdsa": "mocha test/kapu.js test/ecdsa/*",
+    "test:ecpair": "mocha test/kapu.js test/ecpair/*",
+    "test:ecsignature": "mocha test/kapu.js test/ecsignature/*",
+    "test:hdnode": "mocha test/kapu.js test/hdnode/*",
+    "test:integration": "mocha test/kapu.js test/integration/*",
+    "test:ipfs": "mocha test/kapu.js test/ipfs/*",
+    "test:multisignature": "mocha test/kapu.js test/multisignature/*",
+    "test:signature": "mocha test/kapu.js test/signature/*",
+    "test:slot": "mocha test/kapu.js test/slot/*",
+    "test:transaction": "mocha test/kapu.js test/transaction/*",
+    "test:vote": "mocha test/kapu.js test/vote/*"
   },
   "directories": {
     "doc": "./doc",
@@ -21,12 +33,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ArkEcosystem/ark-js.git"
+    "url": "git+https://github.com/gsilvestri/kapu-js.git"
   },
-  "homepage": "https://github.com/ArkEcosystem/ark-js",
+  "homepage": "https://github.com/gsilvestri/kapu-js",
   "keywords": [
     "api",
-    "ark",
+    "kapu",
     "blockchain",
     "client",
     "cryptocurrency",
@@ -34,12 +46,13 @@
     "server",
     "transaction"
   ],
-  "bugs": "https://github.com/ArkEcosystem/ark-js/issues",
+  "bugs": "https://github.com/gsilvestri/kapu-js/issues",
   "contributors": [
     "FX Thoorens <fx@ark.io>",
     "Guillaume Verbal <doweig@ark.io>",
     "Boris Povod <boris@crypti.me>",
-    "Oliver Beddows <oliver@lisk.io>"
+    "Oliver Beddows <oliver@lisk.io>",
+    "Giovanni Silvestri <gsit80@gmail.com>"
   ],
   "license": "MIT",
   "dependencies": {
