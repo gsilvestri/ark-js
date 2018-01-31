@@ -1,4 +1,4 @@
-![KAPU JavaScript](https://i.imgur.com/ywwE2uF.png)
+![KAPU JavaScript](https://i.imgur.com/TZZRugJ.png)
 
 
 [![Build Status](https://travis-ci.org/gsilvestri/kapu-js.svg?branch=master)](https://travis-ci.org/gsilvestri/kapu-js)
