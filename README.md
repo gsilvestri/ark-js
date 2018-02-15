@@ -120,7 +120,7 @@ Returning:
 
 ### Network identification with Nethash
 
-You need to obtain the nethash in order to be sure you are broadcasting to the right network (testnet, mainnet or others). The nethash is simply the payload hash from the genesisBlock. If no nethash or wrong nethash is provided in the headers, the request will be rejected returning the expected nethash.
+You need to obtain the nethash in order to be sure you are broadcasting to the right network (devnet, mainnet or others). The nethash is simply the payload hash from the genesisBlock. If no nethash or wrong nethash is provided in the headers, the request will be rejected returning the expected nethash.
 
 ```json
 { "success": false, "message": "Request is made on the wrong network", "expected":"313ea34c8eb705f79e7bc298b788417ff3f7116c9596f5c9875e769ee2f4ede1", "received":"wrong-nethash" }
