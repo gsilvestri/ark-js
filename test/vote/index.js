@@ -58,6 +58,23 @@ describe("vote.js", function () {
       (tx).should.have.property("recipientId").and.be.type("string").and.be.equal("KBbAxtiRQbHhWKCPyiKH2ss8MkE1wjd5a5");
     });
 
+    it("should create transaction with fee override", function () {
+      const feeOverride = 1000000
+      trs = createVote('secret', publicKeys, 'second secret', feeOverride);
+      (trs).should.be.ok;
+      (trs.fee).should.equal(feeOverride)
+    });
+
+    it("should fail to create transaction with invalid fee override", function (done) {
+      const feeOverride = '1000000'
+      try {
+        trs = createVote('secret', publicKeys, 'second secret', feeOverride);
+        should.fail()
+      } catch (error) {
+        done()
+      }
+    });
+
     it("should be deserialised correctly", function () {
       var deserialisedTx = kapu.crypto.fromBytes(kapu.crypto.getBytes(vt).toString("hex"));
       delete deserialisedTx.vendorFieldHex;

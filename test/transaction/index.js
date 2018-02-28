@@ -40,6 +40,23 @@ describe("transaction.js", function () {
       (trs).should.be.ok;
     });
 
+    it("should create transaction with fee override", function () {
+      const feeOverride = 1000000
+      trs = createTransaction("K9whHQbczCtfLHNvWzgocYCVN8Es3bRP8q", 1000, null, "secret", undefined, undefined, feeOverride);
+      (trs).should.be.ok;
+      (trs.fee).should.equal(feeOverride)
+    });
+
+    it("should fail to create transaction with invalid fee override", function (done) {
+      const feeOverride = '1000000'
+      try {
+        trs = createTransaction("K9whHQbczCtfLHNvWzgocYCVN8Es3bRP8q", 1000, null, "secret", undefined, undefined, feeOverride);
+        should.fail()
+      } catch (error) {
+        done()
+      }
+    });
+
     it("should fail if transaction with vendorField length > 64", function () {
       var vf="z";
       for(i=0;i<6;i++){
