@@ -1,6 +1,6 @@
 {
   "name": "kapujs",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "description": "JavaScript library for sending kapu transactions from the client or server",
   "main": "index.js",
   "engines": {
